@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using System.IO;
 using Bookshelf.Data;
 using Microsoft.EntityFrameworkCore;
+using Bookshelf.Services;
 
 namespace Bookshelf
 {
@@ -38,6 +39,8 @@ namespace Bookshelf
             services.AddDbContext<BookDbContext>(options => options.UseSqlServer(conn));
 
             services.AddMvc();
+
+            services.AddScoped<IBookData, SqlBookData>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
