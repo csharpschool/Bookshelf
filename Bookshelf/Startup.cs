@@ -41,6 +41,8 @@ namespace Bookshelf
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseStaticFiles();
+
             app.Run(async (context) =>
             {
                 var message = Configuration["Message"];
