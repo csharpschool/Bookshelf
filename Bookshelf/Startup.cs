@@ -9,6 +9,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Configuration;
 using System.IO;
+using Bookshelf.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace Bookshelf
 {
@@ -16,11 +18,14 @@ namespace Bookshelf
     {
         public IConfiguration Configuration { get; set; }
 
-        public Startup()
+        public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json");
+                .AddJsonFile("appsettings.json", optional: true);
+
+            if (env.IsDevelopment())
+                builder.AddUserSecrets<Startup>();
 
             Configuration = builder.Build();
         }
@@ -29,6 +34,9 @@ namespace Bookshelf
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            var conn = Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<BookDbContext>(options => options.UseSqlServer(conn));
+
             services.AddMvc();
         }
 
