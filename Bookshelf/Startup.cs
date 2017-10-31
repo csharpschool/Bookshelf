@@ -38,12 +38,11 @@ namespace Bookshelf
 
             if (env.IsDevelopment())
             {
-                //app.UseDeveloperExceptionPage();
+                app.UseDeveloperExceptionPage();
             }
 
             app.Run(async (context) =>
             {
-                throw new Exception("Fake Exception!");
                 var message = Configuration["Message"];
                 await context.Response.WriteAsync(message);
             });
