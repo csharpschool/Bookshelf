@@ -1,0 +1,7 @@
+﻿@model Bookshelf.ViewModels.BookViewModel
+<tr>
+    <td>@Model.Title</td>
+    <td>@Model.Genre</td>
+    <td>@Html.ActionLink("Details", "Details", new { id = Model.Id })</td>
+    <td>@Html.ActionLink("Edit", "Edit", new { id = Model.Id })</td>
+</tr>
