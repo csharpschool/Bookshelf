@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Bookshelf.Controllers
 {
-    public class HomeController
+    public class HomeController : Controller
     {
         private IBookData _books;
         public HomeController(IBookData books)
@@ -15,10 +15,10 @@ namespace Bookshelf.Controllers
             _books = books;
         }
 
-        public ObjectResult Index()
+        public ViewResult Index()
         {
             var model = _books.Get(1);
-            return new ObjectResult(model);
+            return View(model);
         }
     }
 }
