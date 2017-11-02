@@ -1,8 +1,18 @@
-﻿@model Bookshelf.Entities.Book
+﻿@model IEnumerable<Bookshelf.Entities.Book>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Book</title>
 </head>
-<body>@Model.Title</body>
+<body>
+    <table>
+        @foreach (var book in Model)
+        {
+            <tr>
+                <td>@book.Id</td>
+                <td>@book.Title</td>
+            </tr>
+        }
+    </table>
+</body>
 </html>

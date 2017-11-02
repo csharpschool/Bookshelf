@@ -17,7 +17,7 @@ namespace Bookshelf.Controllers
 
         public ViewResult Index()
         {
-            var model = _books.Get(1);
+            var model = _books.GetAll();
             return View(model);
         }
     }
