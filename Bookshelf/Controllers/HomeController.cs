@@ -68,5 +68,31 @@ namespace Bookshelf.Controllers
             return RedirectToAction("Details", new { id = book.Id });
         }
 
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var book = _books.Get(id);
+
+            if (book == null) return RedirectToAction("Index");
+
+            return View(book);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(int id, BookEditViewModel model)
+        {
+            var book = _books.Get(id);
+
+            if (book == null || !ModelState.IsValid) return View(model);
+
+            book.Title = model.Title;
+            book.Genre = model.Genre;
+
+            _books.Commit();
+
+            return RedirectToAction("Details", new { id = book.Id });
+        }
+
+
     }
 }
