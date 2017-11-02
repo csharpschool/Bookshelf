@@ -53,7 +53,13 @@ namespace Bookshelf
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseMvcWithDefaultRoute();
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}");
+            });
+
             app.UseFileServer();
 
             app.Run(async (context) =>
