@@ -46,5 +46,10 @@ namespace Bookshelf.Controllers
             );
         }
 
+        public IActionResult Create()
+        {
+            return View();
+        }
+
     }
 }
