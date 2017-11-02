@@ -9,7 +9,7 @@
         @foreach (var book in Model)
         {
             <tr>
-                <td>@book.Id</td>
+                <td>@Html.ActionLink(book.Id.ToString(), "Details", new { id = book.Id })</td>
                 <td>@book.Title</td>
                 <td>@book.Genre</td>
             </tr>
