@@ -1,4 +1,5 @@
 ﻿using Bookshelf.Services;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,9 +15,10 @@ namespace Bookshelf.Controllers
             _books = books;
         }
 
-        public string Index()
+        public ObjectResult Index()
         {
-            return "Hello, from the controller!";
+            var model = _books.Get(1);
+            return new ObjectResult(model);
         }
     }
 }
