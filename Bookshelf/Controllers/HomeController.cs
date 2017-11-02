@@ -34,6 +34,9 @@ namespace Bookshelf.Controllers
         {
             var model = _books.Get(id);
 
+            if (model == null)
+                return RedirectToAction("Index");
+
             return View(new BookViewModel
                 {
                     Id = model.Id,
