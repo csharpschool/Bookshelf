@@ -29,5 +29,19 @@ namespace Bookshelf.Controllers
 
             return View(model);
         }
+
+        public IActionResult Details(int id)
+        {
+            var model = _books.Get(id);
+
+            return View(new BookViewModel
+                {
+                    Id = model.Id,
+                    Title = model.Title,
+                    Genre = model.Genre.ToString()
+                }
+            );
+        }
+
     }
 }
