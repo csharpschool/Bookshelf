@@ -1,4 +1,5 @@
-﻿using Bookshelf.Models;
+﻿using Bookshelf.Entities;
+using Bookshelf.Models;
 using Bookshelf.Services;
 using Bookshelf.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -46,9 +47,25 @@ namespace Bookshelf.Controllers
             );
         }
 
+        [HttpGet]
         public IActionResult Create()
         {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(BookEditViewModel model)
+        {
+            var book = new Book
+            {
+                Title = model.Title,
+                Genre = model.Genre
+            };
+
+            _books.Add(book);
+            _books.Commit();
+
+            return RedirectToAction("Details", new { id = book.Id });
         }
 
     }
