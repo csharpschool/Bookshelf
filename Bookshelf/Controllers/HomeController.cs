@@ -1,4 +1,6 @@
-﻿using Bookshelf.Services;
+﻿using Bookshelf.Models;
+using Bookshelf.Services;
+using Bookshelf.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -17,7 +19,14 @@ namespace Bookshelf.Controllers
 
         public ViewResult Index()
         {
-            var model = _books.GetAll();
+            var model = _books.GetAll().Select(book =>
+                new BookViewModel
+                {
+                    Id = book.Id,
+                    Title = book.Title,
+                    Genre = book.Genre.ToString()
+                });
+
             return View(model);
         }
     }

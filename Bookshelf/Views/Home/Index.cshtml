@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Bookshelf.Entities.Book>
+﻿@model IEnumerable<Bookshelf.ViewModels.BookViewModel>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -11,6 +11,7 @@
             <tr>
                 <td>@book.Id</td>
                 <td>@book.Title</td>
+                <td>@book.Genre</td>
             </tr>
         }
     </table>
