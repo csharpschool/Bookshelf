@@ -35,5 +35,15 @@ namespace Bookshelf.Services
         {
             return _db.Books;
         }
+
+        public void Delete(int id)
+        {
+            var book = Get(id);
+
+            if (book == null) return;
+
+            _db.Remove(book);
+        }
+
     }
 }

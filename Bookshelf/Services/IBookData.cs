@@ -12,5 +12,6 @@ namespace Bookshelf.Services
         Book Get(int id);
         void Add(Book newBook);
         int Commit();
+        void Delete(int id);
     }
 }

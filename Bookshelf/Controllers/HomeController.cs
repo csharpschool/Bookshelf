@@ -93,6 +93,24 @@ namespace Bookshelf.Controllers
             return RedirectToAction("Details", new { id = book.Id });
         }
 
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            var book = _books.Get(id);
+
+            if (book == null) return RedirectToAction("Index");
+
+            return View(book);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            _books.Delete(id);
+            _books.Commit();
+            return RedirectToAction("Index");
+        }
+
 
     }
 }
